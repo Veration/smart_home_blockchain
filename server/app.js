@@ -15,7 +15,6 @@ const winston = require('winston');
 app.use(cors());
 app.use(express.json());
 
-
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),

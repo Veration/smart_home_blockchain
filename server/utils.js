@@ -40,8 +40,20 @@ async function addHumidityValue(idx, acc) {
     }
 }
 
+async function seeLastValueHum(idx, acc) {
+    try {
+        let startTime = performance.now();
+        await contract.methods.humidityLastVal().send({from: acc, gas: 1000000});
+        let time = performance.now() - startTime;
+        return Math.round(time);
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
     accounts,
     addTemperatureValue,
-    addHumidityValue
+    addHumidityValue,
+    seeLastValueHum
 };

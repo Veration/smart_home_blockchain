@@ -15,6 +15,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const {accounts, addTemperatureValue, addHumidityValue} = require('../server/utils');
 
+
 app.use(cors());
 app.use(express.json());
 
@@ -28,14 +29,15 @@ let times = [];
 
 const timeout = 1000;
 
+
 (async function () {
-  accountsList = await accounts();
+  
+  let accountsList = await accounts();
   const myAccount = accountsList[myIndex];
   console.log(myAccount);
 
   async function addTemperature(){
     let theTimeT = await addTemperatureValue(myIndex, myAccount);
-    // times.push(theTimeT);
     console.log(theTimeT + " " + cnt1);
     cnt1 += 1;
     if (cnt1 < 100) {
@@ -45,7 +47,6 @@ const timeout = 1000;
 
   async function addHumidity(){
     let theTimeH = await addHumidityValue(myIndex, myAccount);
-    // times.push(theTimeH);
     console.log(theTimeH + " " + cnt2);
     cnt2 += 1;
     if (cnt2 < 100) {
